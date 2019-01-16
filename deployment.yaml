@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+  creationTimestamp: 2019-01-13T15:06:36Z
+  generation: 3
+  labels:
+    run: example-go
+  name: example-go
+  namespace: default
+  resourceVersion: "6859"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/example-go
+  uid: d26e1e40-1744-11e9-8aed-42010aaa0fe6
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: example-go
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: example-go
+    spec:
+      containers:
+      - image: gcr.io/react-native-228511/backend:v10
+        imagePullPolicy: IfNotPresent
+        name: example-go
+        ports:
+        - containerPort: 9988
+          protocol: TCP
+        env:
+        - name: PG_DATASOURCE
+          valueFrom:
+            secretKeyRef:
+              name: solitary-ibex-postgresql
+              key: env_postgres
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: 2019-01-13T15:55:53Z
+    lastUpdateTime: 2019-01-13T15:55:53Z
+    message: ReplicaSet "example-go-774cfcd754" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: 2019-01-13T15:55:54Z
+    lastUpdateTime: 2019-01-13T15:55:54Z
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  observedGeneration: 3
+  replicas: 2
+  unavailableReplicas: 2
+  updatedReplicas: 2

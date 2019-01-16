@@ -1,0 +1,139 @@
+Login --POST--localhost:3000/accounts/login--{user_nam,digest_password}--return "type"
+SignUp--POST-localhost:3000/accounts--{user_nam,digest_password}--if success return "status":: "sign up success"
+								--else "error": "user name is already exist, please enter unique user name"
+getMenu--GET--localhost:3000/drinks--[
+  {
+    "id": "e88cd1ba-2b45-42cb-9dd8-3ae6f14f93e2",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Mocha Italia",
+    "description": "Disaronno Amaretto, espresso and chocolate topped with whipped cream",
+    "price": 45000,
+    "times_order": 27
+  },
+  {
+    "id": "e88cd1ba-2b45-42cb-9dd8-3ae6f14f93e1",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Spanish Coffee",
+    "description": "Tia Maria, St. Remy Brandy and coffee topped with whipped cream",
+    "price": 38000,
+    "times_order": 20
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e9",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Monte Cristo Coffee",
+    "description": "Kahlua, Grand Marnier, and coffee topped with whipped cream",
+    "price": 42000,
+    "times_order": 18
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e8",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Amarula Creme Brulee Coffee",
+    "description": "Amarula Cream Liqueur, butterscotch schnapps,coffee and whipped cream",
+    "price": 46000,
+    "times_order": 16
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e3",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "White Coffee",
+    "description": "Oreos and vanilla ice cream",
+    "price": 43000,
+    "times_order": 14
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e1",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Mocha Flavored",
+    "description": "Sweet, ripe banana flavor and rich caramet",
+    "price": 45000,
+    "times_order": 12
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e2",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Cinnamon",
+    "description": "Freshly ground cinnamon with a touch of nutmeg, ripe banana flavor and rich caramet",
+    "price": 50000,
+    "times_order": 10
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e4",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Dark Chocolate",
+    "description": "Made with a single origin French chocolate",
+    "price": 38000,
+    "times_order": 7
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e5",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Espresso",
+    "description": "Vanilla-roasted peaches, mixed with smooth creamy ice cream",
+    "price": 50000,
+    "times_order": 6
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e6",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Raspberry Swirl",
+    "description": "Raspberry sorbet with creamy, rich vanilla ice cream",
+    "price": 47000,
+    "times_order": 5
+  },
+  {
+    "id": "e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e7",
+    "created_at": "2019-01-14T16:02:25.455014Z",
+    "name": "Strawberry",
+    "description": "Fresh strawberries sweetened and blended with ice cream",
+    "price": 64000,
+    "times_order": 4
+  }
+]
+sendOther -- POST--localhost:3000/orders--{
+  "id": "cd4fb6a5-005d-4b2a-af10-7c4969193612",
+  "created_at": "2019-01-14T23:27:01.476172+07:00",
+  "order_time": "2019-01-14T23:27:01.474627+07:00",
+  "receive_time": null,
+  "status": "undone",
+  "shop_id": "fe9c7f84-621b-48cf-8132-c79d13c10204",
+  "detail_id": "00000000-0000-0000-0000-000000000000",
+  "details": [
+    {
+      "id": "fabbc3cc-89c4-4bc3-917e-69ee08cd0a71",
+      "created_at": "2019-01-14T23:27:01.485559+07:00",
+      "quantity": 0,
+      "drink_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "account_id": "fe9c7f84-621b-48cf-8132-c79d13c10201"
+}
+get1OrderById--GET--localhost:3000/orders/byorderid/9cc3d864-4033-4129-8070-ead1508bd378 --
+ { "id": "9cc3d864-4033-4129-8070-ead1508bd378",
+  "created_at": "2019-01-14T16:53:14.584198Z",
+  "order_time": "2019-01-14T17:23:14.582422Z",
+  "receive_time": 30,
+  "status": "uncheck",
+  "shop_id": "fe9c7f84-621b-48cf-8132-c79d13c10204",
+  "detail_id": "00000000-0000-0000-0000-000000000000",
+  "details": null,
+  "account_id": "fe9c7f84-621b-48cf-8132-c79d13c10201"
+}
+getAllOrderByShopIdToday--GETlocalhost:3000/orders?shopid=fe9c7f84-621b-48cf-8132-c79d13c10204-- 
+[
+  {
+    "id": "45dd60e4-82ba-4205-966b-0df3df198a9d",
+    "created_at": "2019-01-14T16:58:37.496529Z",
+    "order_time": "2019-01-14T15:31:32.72994Z",
+    "receive_time": 30,
+    "status": "uncheck",
+    "shop_id": "fe9c7f84-621b-48cf-8132-c79d13c10204",
+    "detail_id": "00000000-0000-0000-0000-000000000000",
+    "details": null,
+    "account_id": "fe9c7f84-621b-48cf-8132-c79d13c10201"
+  }
+]
+
+validate for form reqiuestii
+

@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
 	"github.com/go-kit/kit/log"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -16,7 +15,10 @@ import (
 	"github.com/minhkhiemm/example-go/endpoints"
 	serviceHttp "github.com/minhkhiemm/example-go/http"
 	"github.com/minhkhiemm/example-go/service"
-	userSvc "github.com/minhkhiemm/example-go/service/user"
+	accountService "github.com/minhkhiemm/example-go/service/account"
+	detailService "github.com/minhkhiemm/example-go/service/detail"
+	drinkService "github.com/minhkhiemm/example-go/service/drink"
+	orderService "github.com/minhkhiemm/example-go/service/order"
 )
 
 func main() {
@@ -39,24 +41,22 @@ func main() {
 		logger = log.With(logger, "caller", log.DefaultCaller)
 	}
 
-	// setup locale
-	{
-		loc, err := time.LoadLocation("Asia/Bangkok")
-		if err != nil {
-			logger.Log("error", err)
-			os.Exit(1)
-		}
-		time.Local = loc
-	}
-
 	// setup service
 	var (
 		pgDB, closeDB = pg.New(os.Getenv("PG_DATASOURCE"))
 		s             = service.Service{
-			UserService: service.Compose(
-				userSvc.NewPGService(pgDB),
-				userSvc.ValidationMiddleware(),
-			).(userSvc.Service),
+			OrderService: service.Compose(
+				orderService.NewPGService(pgDB),
+			).(orderService.Service),
+			AccountService: service.Compose(
+				accountService.NewPGService(pgDB),
+			).(accountService.Service),
+			DetailService: service.Compose(
+				detailService.NewPGService(pgDB),
+			).(detailService.Service),
+			DrinkService: service.Compose(
+				drinkService.NewPGService(pgDB),
+			).(drinkService.Service),
 		}
 	)
 	defer closeDB()
