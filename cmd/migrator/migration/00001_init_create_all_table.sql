@@ -26,7 +26,8 @@ CREATE TABLE "public"."drinks" (
 
   "name" varchar(200),
   "description" varchar,
-  "price" SMALLINT
+  "price" SMALLINT,
+  "url" text
 );
 
 CREATE TABLE "public"."details" (

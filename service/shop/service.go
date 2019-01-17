@@ -1,4 +1,4 @@
-package drink
+package shop
 
 import (
 	"context"
@@ -7,5 +7,5 @@ import (
 )
 
 type Service interface {
-	GetAll(ctx context.Context) ([]domain.Drink, error)
+	Gets(_ context.Context) ([]domain.Shop, error)
 }

@@ -5,8 +5,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 
-	"github.com/minhkhiemm/example-go/domain"
-	"github.com/minhkhiemm/example-go/errorer"
+	"github.com/Lycheeeeeee/react-native-be/domain"
+	"github.com/Lycheeeeeee/react-native-be/errorer"
 )
 
 type pgService struct {

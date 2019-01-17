@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/minhkhiemm/example-go/domain"
+	"github.com/Lycheeeeeee/react-native-be/domain"
 )
 
 func DecodeCreateAccount(_ context.Context, r *http.Request) (interface{}, error) {

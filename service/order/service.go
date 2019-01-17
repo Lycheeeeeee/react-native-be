@@ -3,7 +3,7 @@ package order
 import (
 	"context"
 
-	"github.com/minhkhiemm/example-go/domain"
+	"github.com/Lycheeeeeee/react-native-be/domain"
 )
 
 type Service interface {

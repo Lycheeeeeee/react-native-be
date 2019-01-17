@@ -3,11 +3,11 @@ package account
 import (
 	"context"
 
-	"github.com/minhkhiemm/example-go/errorer"
+	"github.com/Lycheeeeeee/react-native-be/errorer"
 
 	"github.com/go-kit/kit/endpoint"
-	"github.com/minhkhiemm/example-go/domain"
-	"github.com/minhkhiemm/example-go/service"
+	"github.com/Lycheeeeeee/react-native-be/domain"
+	"github.com/Lycheeeeeee/react-native-be/service"
 )
 
 const userType = "user"

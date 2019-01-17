@@ -8,8 +8,8 @@ import (
 	"github.com/jinzhu/gorm"
 
 	"github.com/go-kit/kit/endpoint"
-	"github.com/minhkhiemm/example-go/domain"
-	"github.com/minhkhiemm/example-go/service"
+	"github.com/Lycheeeeeee/react-native-be/domain"
+	"github.com/Lycheeeeeee/react-native-be/service"
 )
 
 func GetAllByDate(s service.Service) endpoint.Endpoint {

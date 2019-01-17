@@ -11,7 +11,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq" // postgresql driver
 
-	"github.com/minhkhiemm/example-go/domain"
+	"github.com/Lycheeeeeee/react-native-be/domain"
 )
 
 const (

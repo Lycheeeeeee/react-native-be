@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/minhkhiemm/example-go/cmd/migrator/config"
+	"github.com/Lycheeeeeee/react-native-be/cmd/migrator/config"
 )
 
 const (

@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/jinzhu/gorm"
-	"github.com/minhkhiemm/example-go/domain"
+	"github.com/Lycheeeeeee/react-native-be/domain"
 )
 
 type pgService struct {
