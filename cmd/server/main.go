@@ -11,14 +11,15 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
 
-	"github.com/minhkhiemm/example-go/config/database/pg"
-	"github.com/minhkhiemm/example-go/endpoints"
-	serviceHttp "github.com/minhkhiemm/example-go/http"
-	"github.com/minhkhiemm/example-go/service"
-	accountService "github.com/minhkhiemm/example-go/service/account"
-	detailService "github.com/minhkhiemm/example-go/service/detail"
-	drinkService "github.com/minhkhiemm/example-go/service/drink"
-	orderService "github.com/minhkhiemm/example-go/service/order"
+	"github.com/Lycheeeeeee/react-native-be/config/database/pg"
+	"github.com/Lycheeeeeee/react-native-be/endpoints"
+	serviceHttp "github.com/Lycheeeeeee/react-native-be/http"
+	"github.com/Lycheeeeeee/react-native-be/service"
+	accountService "github.com/Lycheeeeeee/react-native-be/service/account"
+	detailService "github.com/Lycheeeeeee/react-native-be/service/detail"
+	drinkService "github.com/Lycheeeeeee/react-native-be/service/drink"
+	orderService "github.com/Lycheeeeeee/react-native-be/service/order"
+	shopService "github.com/Lycheeeeeee/react-native-be/service/shop"
 )
 
 func main() {
@@ -57,8 +58,12 @@ func main() {
 			DrinkService: service.Compose(
 				drinkService.NewPGService(pgDB),
 			).(drinkService.Service),
+			ShopService: service.Compose(
+				shopService.NewPGService(pgDB),
+			).(shopService.Service),
 		}
 	)
+	
 	defer closeDB()
 
 	var h http.Handler

@@ -1,10 +1,11 @@
 package service
 
 import (
-	"github.com/minhkhiemm/example-go/service/account"
-	"github.com/minhkhiemm/example-go/service/detail"
-	"github.com/minhkhiemm/example-go/service/drink"
-	"github.com/minhkhiemm/example-go/service/order"
+	"github.com/Lycheeeeeee/react-native-be/service/shop"
+	"github.com/Lycheeeeeee/react-native-be/service/account"
+	"github.com/Lycheeeeeee/react-native-be/service/detail"
+	"github.com/Lycheeeeeee/react-native-be/service/drink"
+	"github.com/Lycheeeeeee/react-native-be/service/order"
 )
 
 // Service define list of all services in projects
@@ -13,4 +14,5 @@ type Service struct {
 	AccountService account.Service
 	DetailService  detail.Service
 	DrinkService   drink.Service
+	ShopService    shop.Service
 }

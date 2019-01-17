@@ -3,10 +3,11 @@ package endpoints
 import (
 	"github.com/go-kit/kit/endpoint"
 
-	"github.com/minhkhiemm/example-go/endpoints/account"
-	"github.com/minhkhiemm/example-go/endpoints/drink"
-	"github.com/minhkhiemm/example-go/endpoints/order"
-	"github.com/minhkhiemm/example-go/service"
+	"github.com/Lycheeeeeee/react-native-be/endpoints/account"
+	"github.com/Lycheeeeeee/react-native-be/endpoints/drink"
+	"github.com/Lycheeeeeee/react-native-be/endpoints/order"
+	"github.com/Lycheeeeeee/react-native-be/endpoints/shop"
+	"github.com/Lycheeeeeee/react-native-be/service"
 )
 
 // Endpoints .
@@ -23,6 +24,8 @@ type Endpoints struct {
 	Login         endpoint.Endpoint
 	// Drinks
 	GetAllDrink endpoint.Endpoint
+	// Shops
+	GetAllShop endpoint.Endpoint
 }
 
 // MakeServerEndpoints returns an Endpoints struct
@@ -40,5 +43,7 @@ func MakeServerEndpoints(s service.Service) Endpoints {
 		Login:         account.Login(s),
 		// Drinks
 		GetAllDrink: drink.GetAll(s),
+		// Shops
+		GetAllShop: shop.GetAll(s),
 	}
 }

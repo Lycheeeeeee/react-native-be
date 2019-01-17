@@ -1,6 +1,6 @@
 package order
 
-import "github.com/minhkhiemm/example-go/domain"
+import "github.com/Lycheeeeeee/react-native-be/domain"
 
 type GetRequest struct {
 	ID domain.UUID

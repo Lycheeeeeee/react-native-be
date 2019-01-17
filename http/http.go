@@ -10,7 +10,7 @@ import (
 	"github.com/go-kit/kit/log"
 	httptransport "github.com/go-kit/kit/transport/http"
 
-	"github.com/minhkhiemm/example-go/endpoints"
+	"github.com/Lycheeeeeee/react-native-be/endpoints"
 )
 
 // NewHTTPHandler ...
@@ -102,7 +102,14 @@ func NewHTTPHandler(endpoints endpoints.Endpoints,
 			options...,
 		).ServeHTTP)
 	})
-
+	r.Route("/shops", func(r chi.Router) {
+		r.Get("/", httptransport.NewServer(
+			endpoints.GetAllShop,
+			DecodeNullRequest,
+			encodeResponse,
+			options...,
+		).ServeHTTP)
+	})
 	return r
 }
 

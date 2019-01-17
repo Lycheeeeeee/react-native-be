@@ -7,8 +7,8 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq" // driver for open postgres connection
 
-	"github.com/minhkhiemm/example-go/cmd/migrator/config"
-	"github.com/minhkhiemm/example-go/domain"
+	"github.com/Lycheeeeeee/react-native-be/cmd/migrator/config"
+	"github.com/Lycheeeeeee/react-native-be/domain"
 )
 
 // PGConnector store implement open for postgres

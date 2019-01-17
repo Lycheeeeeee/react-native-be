@@ -9,8 +9,8 @@ import (
 	"github.com/pressly/goose"
 
 	// Init DB drivers.
-	"github.com/minhkhiemm/example-go/cmd/migrator/config"
-	dbconn "github.com/minhkhiemm/example-go/cmd/migrator/db"
+	"github.com/Lycheeeeeee/react-native-be/cmd/migrator/config"
+	dbconn "github.com/Lycheeeeeee/react-native-be/cmd/migrator/db"
 )
 
 var (
