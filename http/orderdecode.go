@@ -56,7 +56,7 @@ func DecodeGetAllByDateRequest(_ context.Context, r *http.Request) (interface{},
 }
 
 func DecodeCreateOrderRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	req := domain.Order{}
+	req := domain.OrderRequest{}
 
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
