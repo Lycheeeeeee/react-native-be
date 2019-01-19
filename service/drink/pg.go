@@ -3,8 +3,8 @@ package drink
 import (
 	"context"
 
-	"github.com/jinzhu/gorm"
 	"github.com/Lycheeeeeee/react-native-be/domain"
+	"github.com/jinzhu/gorm"
 )
 
 type pgService struct {
@@ -26,4 +26,10 @@ func (s *pgService) GetAll(_ context.Context) ([]domain.Drink, error) {
 		return nil, err
 	}
 	return drinks, nil
+}
+
+func (s *pgService) Get(_ context.Context, name string) (*domain.Drink, error) {
+	drink := domain.Drink{}
+
+	return &drink, s.db.Where("name = ?", name).First(&drink).Error
 }

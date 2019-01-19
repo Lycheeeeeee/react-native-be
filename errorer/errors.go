@@ -6,6 +6,7 @@ var (
 	ErrInvalidReceiveTime = errInvalidReceiveTime{}
 	ErrInvalidUserName    = errInvalidUserName{}
 	ErrInvalidAccount     = errInvalidAccount{}
+	ErrNotExistDrink      = errNotExistDrink{}
 )
 
 type errInvalidReceiveTime struct{}
@@ -35,5 +36,15 @@ func (errInvalidAccount) Error() string {
 }
 
 func (errInvalidAccount) StatusCode() int {
+	return http.StatusBadRequest
+}
+
+type errNotExistDrink struct{}
+
+func (errNotExistDrink) Error() string {
+	return "drink does not exist in this shop"
+}
+
+func (errNotExistDrink) StatusCode() int {
 	return http.StatusBadRequest
 }

@@ -3,8 +3,8 @@ package order
 import (
 	"context"
 
-	"github.com/jinzhu/gorm"
 	"github.com/Lycheeeeeee/react-native-be/domain"
+	"github.com/jinzhu/gorm"
 )
 
 type pgService struct {
@@ -21,6 +21,7 @@ func (s *pgService) GetAllByDate(_ context.Context, date domain.OrderDate) ([]*d
 	orders := []*domain.Order{}
 	query := s.db
 	if date.Date != 0 {
+
 		query = query.Where("date_part('day', created_at) = ?", date.Date)
 	}
 
@@ -54,7 +55,7 @@ func (s *pgService) Update(_ context.Context, order *domain.Order) (*domain.Orde
 
 func (s *pgService) GetByShopID(_ context.Context, shopID domain.UUID) ([]domain.Order, error) {
 	orders := []domain.Order{}
-	return orders, s.db.Where("shop_id = ?", shopID).Find(&orders).Error
+	return orders, s.db.Preload("Detail").Where("shop_id = ?", shopID).Find(&orders).Error
 }
 
 func (s *pgService) GetByMonth(_ context.Context, month int) ([]domain.Order, error) {

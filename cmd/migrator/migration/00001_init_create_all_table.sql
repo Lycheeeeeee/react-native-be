@@ -30,31 +30,30 @@ CREATE TABLE "public"."drinks" (
   "url" text
 );
 
+CREATE TABLE "public"."orders" (
+"id" uuid NOT NULL PRIMARY KEY,
+"created_at" timestamptz DEFAULT now(),
+"deleted_at" timestamptz,
+
+"status" varchar(50),
+"order_time" timestamptz,
+"receive_time" smallint,
+"shop_id" uuid REFERENCES shops(id),
+"account_id" uuid REFERENCES accounts(id),
+"total_price" INTEGER
+);
+
 CREATE TABLE "public"."details" (
   "id" uuid NOT NULL PRIMARY KEY,
   "created_at" timestamptz DEFAULT now(),
   "deleted_at" timestamptz,
 
   "quantity" SMALLINT,
-  "drink_id" uuid REFERENCES drinks(id)
+  "drink_id" uuid REFERENCES drinks(id),
+  "order_id" uuid REFERENCES orders(id)
 );
 
-CREATE TABLE "public"."orders" (
-  "id" uuid NOT NULL PRIMARY KEY,
-  "created_at" timestamptz DEFAULT now(),
-  "deleted_at" timestamptz,
 
- "status" varchar(50),
- "order_time" timestamptz,
- "receive_time" smallint,
- "shop_id" uuid REFERENCES shops(id),
- "account_id" uuid REFERENCES accounts(id),
- "detail_id" uuid REFERENCES details(id),
- "total_price" INTEGER
-);
-
-ALTER TABLE details ADD COLUMN order_id uuid;
-ALTER TABLE "public"."details" ADD CONSTRAINT "details_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "public"."orders" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE orders ADD COLUMN simple_id varchar(50);
 ALTER TABLE shops ADD COLUMN staff_account_id uuid;
 ALTER TABLE "public"."shops" ADD CONSTRAINT "shops_fkey" FOREIGN KEY ("staff_account_id") REFERENCES "public"."accounts" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

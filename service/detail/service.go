@@ -8,4 +8,5 @@ import (
 
 type Service interface {
 	Create(ctx context.Context, detail *domain.Detail) (*domain.Detail, error)
+	Get(ctx context.Context, orderID domain.UUID) ([]domain.Detail, error)
 }

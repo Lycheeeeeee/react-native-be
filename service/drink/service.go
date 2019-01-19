@@ -8,4 +8,5 @@ import (
 
 type Service interface {
 	GetAll(ctx context.Context) ([]domain.Drink, error)
+	Get(ctx context.Context, name string) (*domain.Drink, error)
 }
