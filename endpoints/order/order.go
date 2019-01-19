@@ -147,3 +147,11 @@ func GetByMonth(s service.Service) endpoint.Endpoint {
 		return s.OrderService.GetByMonth(ctx, req.Month)
 	}
 }
+
+// func generateSimpleID() string {
+
+// }
+
+// func extractSimpleID() int {
+
+// }

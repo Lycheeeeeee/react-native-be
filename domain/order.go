@@ -13,6 +13,7 @@ type Order struct {
 	Detail      []Detail  `json:"details"`
 	AccountID   UUID      `json:"account_id"`
 	TotalPrice  int       `json:"total_price"`
+	SimpleID    int       `json:"simple_id" sql:"type:integer;default:orders_simple_id_seq()"`
 }
 
 type OrderDate struct {
