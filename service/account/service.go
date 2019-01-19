@@ -8,5 +8,5 @@ import (
 
 type Service interface {
 	Create(ctx context.Context, account *domain.Account) error
-	GetByUserName(ctx context.Context, account *domain.Account) (string, string, error)
+	GetByUserName(ctx context.Context, account *domain.Account) (string, domain.UUID, error)
 }
