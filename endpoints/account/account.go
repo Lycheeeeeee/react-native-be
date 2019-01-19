@@ -34,8 +34,8 @@ type UserTypeResponse struct {
 }
 
 type LoginStaffResponse struct {
-	Type string `json:"type"`
-	Shop string `json:"shop"`
+	Type   string      `json:"type"`
+	ShopID domain.UUID `json:"shop_id"`
 }
 
 func Login(s service.Service) endpoint.Endpoint {
@@ -48,8 +48,8 @@ func Login(s service.Service) endpoint.Endpoint {
 
 		if t == "staff" {
 			return LoginStaffResponse{
-				Type: t,
-				Shop: s,
+				Type:   t,
+				ShopID: s,
 			}, nil
 
 		}

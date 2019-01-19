@@ -28,11 +28,11 @@ func (s *pgService) Create(_ context.Context, account *domain.Account) error {
 	return errorer.ErrInvalidUserName
 }
 
-func (s *pgService) GetByUserName(_ context.Context, account *domain.Account) (string, string, error) {
+func (s *pgService) GetByUserName(_ context.Context, account *domain.Account) (string, domain.UUID, error) {
 	err := s.db.Preload("Shop").Where("deleted_at IS NULL AND user_name = ? AND digest_password = ?", account.UserName, account.DigestPassword).First(&account).Error
 	if err != nil {
-		return "", "", err
+		return "", domain.UUID{}, err
 	}
 
-	return account.Type, account.Shop.Name, nil
+	return account.Type, account.Shop.ID, nil
 }
