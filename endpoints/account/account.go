@@ -5,9 +5,9 @@ import (
 
 	"github.com/Lycheeeeeee/react-native-be/errorer"
 
-	"github.com/go-kit/kit/endpoint"
 	"github.com/Lycheeeeeee/react-native-be/domain"
 	"github.com/Lycheeeeeee/react-native-be/service"
+	"github.com/go-kit/kit/endpoint"
 )
 
 const userType = "user"
@@ -33,12 +33,25 @@ type UserTypeResponse struct {
 	Type string `json:"type"`
 }
 
+type LoginStaffResponse struct {
+	Type string `json:"type"`
+	Shop string `json:"shop"`
+}
+
 func Login(s service.Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(domain.Account)
-		t, err := s.AccountService.GetByUserName(ctx, &req)
+		t, s, err := s.AccountService.GetByUserName(ctx, &req)
 		if err != nil {
 			return nil, errorer.ErrInvalidAccount
+		}
+
+		if t == "staff" {
+			return LoginStaffResponse{
+				Type: t,
+				Shop: s,
+			}, nil
+
 		}
 
 		return UserTypeResponse{Type: t}, nil

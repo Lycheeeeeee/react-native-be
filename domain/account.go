@@ -5,4 +5,5 @@ type Account struct {
 	UserName       string `json:"user_name"`
 	DigestPassword string `json:"digest_password"`
 	Type           string `json:"type"`
+	Shop           Shop
 }

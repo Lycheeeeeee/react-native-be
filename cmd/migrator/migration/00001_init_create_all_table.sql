@@ -30,6 +30,9 @@ CREATE TABLE "public"."drinks" (
   "url" text
 );
 
+CREATE SEQUENCE orders_simple_id_seq;
+
+
 CREATE TABLE "public"."orders" (
 "id" uuid NOT NULL PRIMARY KEY,
 "created_at" timestamptz DEFAULT now(),
@@ -40,7 +43,8 @@ CREATE TABLE "public"."orders" (
 "receive_time" smallint,
 "shop_id" uuid REFERENCES shops(id),
 "account_id" uuid REFERENCES accounts(id),
-"total_price" INTEGER
+"total_price" INTEGER,
+"simple_id" INTEGER NOT NULL DEFAULT nextval('orders_simple_id_seq')
 );
 
 CREATE TABLE "public"."details" (
@@ -54,14 +58,16 @@ CREATE TABLE "public"."details" (
 );
 
 
-ALTER TABLE orders ADD COLUMN simple_id varchar(50);
-ALTER TABLE shops ADD COLUMN staff_account_id uuid;
-ALTER TABLE "public"."shops" ADD CONSTRAINT "shops_fkey" FOREIGN KEY ("staff_account_id") REFERENCES "public"."accounts" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER SEQUENCE orders_simple_id_seq OWNED BY orders.simple_id;
+
+ALTER TABLE shops ADD COLUMN account_id uuid;
+
+ALTER TABLE "public"."shops" ADD CONSTRAINT "shops_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "public"."accounts" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 INSERT INTO accounts (id,user_name,digest_password,type) VALUES 
 ('fe9c7f84-621b-48cf-8132-c79d13c10201','admin1','1111','staff'),
 ('fe9c7f84-621b-48cf-8132-c79d13c10202','admin2','2222','staff'),
 ('fe9c7f84-621b-48cf-8132-c79d13c10203','admin3','3333','staff');
-INSERT INTO shops(id,name,address,staff_account_id) VALUES
+INSERT INTO shops(id,name,address,account_id) VALUES
 ('fe9c7f84-621b-48cf-8132-c79d13c10204','branch1','60-62 Cach Mang Thang 8 Phuong 6 Q3','fe9c7f84-621b-48cf-8132-c79d13c10201'),
 ('fe9c7f84-621b-48cf-8132-c79d13c10205','branch2','27 Han Thuyen Phuong Ben Nghe Q1','fe9c7f84-621b-48cf-8132-c79d13c10202'),
 ('fe9c7f84-621b-48cf-8132-c79d13c10206','branch3','97 Hai Ba Trung Ben Nghe Q1','fe9c7f84-621b-48cf-8132-c79d13c10203');
@@ -78,7 +84,7 @@ INSERT INTO drinks (id,name,description,price,assets) VALUES ('e78cd1ba-2b45-42c
 ('e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e9','Monte Cristo Coffee','Kahlua, Grand Marnier, and coffee topped with whipped cream',42000,'./assets/d9.jpg'),
 ('e88cd1ba-2b45-42cb-9dd8-3ae6f14f93e1','Spanish Coffee','Tia Maria, St. Remy Brandy and coffee topped with whipped cream',38000,'./assets/d10.jpg'),
 ('e88cd1ba-2b45-42cb-9dd8-3ae6f14f93e2','Mocha Italia','Disaronno Amaretto, espresso and chocolate topped with whipped cream',45000,'./assets/d11.jpg');
-INSERT INTO orders (id,status,order_time,receive_time,shop_id,account_id,simple_id) VALUES ('45dd60e4-82ba-4205-966b-0df3df198a9d','uncheck', '2019-01-14 15:31:32.72994+00','30','fe9c7f84-621b-48cf-8132-c79d13c10204','fe9c7f84-621b-48cf-8132-c79d13c10201','branch1');
+INSERT INTO orders (id,status,order_time,receive_time,shop_id,account_id) VALUES ('45dd60e4-82ba-4205-966b-0df3df198a9d','uncheck', '2019-01-14 15:31:32.72994+00','30','fe9c7f84-621b-48cf-8132-c79d13c10204','fe9c7f84-621b-48cf-8132-c79d13c10201');
 INSERT INTO details(id,order_id,drink_id,quantity) VALUES ('a7169961-22b5-4e9c-bd41-a11c5db7b17d','45dd60e4-82ba-4205-966b-0df3df198a9d','e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e1','12'),
 ('64f03071-0824-43ad-b74b-51bcf9e7555a','45dd60e4-82ba-4205-966b-0df3df198a9d','e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e2','10'),
 ('64f03071-0824-43ad-b74b-51bcf9e7555b','45dd60e4-82ba-4205-966b-0df3df198a9d','e78cd1ba-2b45-42cb-9dd8-3ae6f14f93e3','14'),
